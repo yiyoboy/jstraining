@@ -13,19 +13,28 @@
     constructor(...args) {
       super(...args);
       this.state = {
-        text: 'World'
+        text: 'World',
+        daten:'点击获取当前日期',
+        isClicked: false
       };
     }
 
+
     handleClick() {
+      var d = new Date();
+      var nowDate = d.getFullYear()+'年'+(d.getMonth()+1)+'月'+ d.getDate() + '日';
+      let isClicked = !this.state.isClicked;
       this.setState({
-        text: 'Clicked'
+        text: 'Clicked',
+        daten: nowDate,
+        isClicked: isClicked,
+        text: isClicked ? 'Clicked' : 'World'
       });
     }
 
     render() {
       return <h1 onClick={this.handleClick.bind(this)}>
-        {'Hello ' + this.state.text}
+        {'Hello ' + this.state.daten}
       </h1>;
     }
   };
